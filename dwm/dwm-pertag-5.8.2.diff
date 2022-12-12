@@ -1,5 +1,6 @@
---- dwm.c
-+++ dwm.c
+diff --git a/dwm.c b/dwm.c
+--- a/dwm.c
++++ b/dwm.c
 @@ -122,26 +122,6 @@ typedef struct {
  	void (*arrange)(Monitor *);
  } Layout;
