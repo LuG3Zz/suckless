@@ -9,15 +9,15 @@ static const unsigned int gappoh    = 10;       /* horiz outer gap between windo
 static const unsigned int gappov    = 10;       /* vert outer gap between windows and screen edge */
 static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
+static const int topbar             = 0;        /* 0 means bottom bar */
 static const Bool viewontag         = True;     /* Switch view on tag switch */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "monospace:size=10","WenQuanYi Zen Hei Mono:size=10:type=Regular","Symbols Nerd Font:pixelsize=14:type=2048-em","FiraCode Nerd Font Mono:size=10:style=Regular" };
+static const char dmenufont[]       = "FiraCode Nerd Font Mono:size=10:style=Regular";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
+static const char col_cyan[]        = "#000000";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -65,9 +65,15 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *volup[]  = { "~/scripts/volup.sh", NULL };
+static const char *voldown[]  = { "~/scripts/voldown.sh", NULL };
+static const char *voltoggle[]  = { "~/scripts/voltoggle.sh", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
+	{ 0,             XF86XK_AudioLowerVolume,spawn,{.v = voldown } },
+	{ 0,             XF86XK_AudioRaiseVolume,spawn,{.v = volup } },
+	{ 0,             XF86XK_AudioMute,spawn,{.v = voltoggle } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
