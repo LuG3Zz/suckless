@@ -7,7 +7,7 @@
  */
 static char *font =
     "FiraCode Nerd Font:pixelsize=15:antialias=true:autohint=true";
-static int borderpx = 4;
+static int borderpx = 1;
 
 /*
  * What program is execed by st depends of these precedence rules:

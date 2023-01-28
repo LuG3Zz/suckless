@@ -11,10 +11,10 @@ static       int smartgaps          = 1;        /* 1 means no outer gap when the
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
 static const Bool viewontag         = True;     /* Switch view on tag switch */
-static const char *fonts[]          = { /*"monospace:size=12",*/"Symbols Nerd Font:type=2048-em:pixelsize=14:antialias=true:automint=true",
+static const char *fonts[]          = { /*"monospace:size=12",*/"Symbols Nerd Font:type=2048-em:pixelsize=17:antialias=true:automint=true",
                                                                  "WenQuanYi Zen Hei Mono:size=12:antialias=true:automint=true",
                                                                  "FiraCode Nerd Font Mono:size=12" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char dmenufont[]       = "FiraCode Nerd Font Mono:size=12";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -50,7 +50,7 @@ static Sp scratchpads[] = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "󰎤", "󰎧", "󰎪", "󰎭", "󰎱", "󰎳", "󰎶", "󰎹", "󰎆" };
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
@@ -84,7 +84,7 @@ static const Layout layouts[] = {
 	{ "H[]",      deck },
 	{ "TTT",      bstack },
 	{ "===",      bstackhoriz },
-	{ "HHH",      grid },
+	{ "󰋁",        grid },
 	{ "###",      nrowgrid },
 	{ "---",      horizgrid },
 	{ ":::",      gaplessgrid },
@@ -104,6 +104,8 @@ static const Layout layouts[] = {
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+
+#define STATUSBAR "dwmblocks"
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
@@ -146,7 +148,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[8]} },
 	{ MODKEY,                       XK_g,      setlayout,      {.v = &layouts[7]} },
 	{ MODKEY|ShiftMask,             XK_f,      fullscreen,     {0} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
@@ -163,6 +165,9 @@ static const Key keys[] = {
 	{ MODKEY,            		      XK_grave,  togglescratch,  {.ui = 0 } },
 	{ MODKEY,            		      XK_u,	     togglescratch,  {.ui = 1 } },
 	{ MODKEY,            		      XK_q,	     togglescratch,  {.ui = 2 } },
+  { 0,                          XF86XK_AudioMute,		spawn,		      SHCMD("~/scripts/voltoggle.sh") },
+	{ 0,                          XF86XK_AudioRaiseVolume,	spawn,		SHCMD("~/scripts/volup.sh") },
+	{ 0,                          XF86XK_AudioLowerVolume,	spawn,		SHCMD("~/scripts/voldown.sh") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -183,7 +188,9 @@ static const Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button1,        togglewin,      {0} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
+	{ ClkStatusText,        0,              Button1,        sigstatusbar,   {.i = 1} },
+	{ ClkStatusText,        0,              Button2,        sigstatusbar,   {.i = 2} },
+	{ ClkStatusText,        0,              Button3,        sigstatusbar,   {.i = 3} },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button1,        resizemouse,    {0} },
