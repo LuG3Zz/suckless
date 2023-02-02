@@ -162,10 +162,11 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_s,      show,           {0} },
 	{ MODKEY|ShiftMask,             XK_s,      showall,        {0} },
 	{ MODKEY|ShiftMask,             XK_h,      hide,           {0} },
+  { Mod1Mask|ShiftMask,           XK_s,		   spawn,		       SHCMD("flameshot gui") },
 	{ MODKEY,            		      XK_grave,  togglescratch,  {.ui = 0 } },
 	{ MODKEY,            		      XK_u,	     togglescratch,  {.ui = 1 } },
 	{ MODKEY,            		      XK_q,	     togglescratch,  {.ui = 2 } },
-  { 0,                          XF86XK_AudioMute,		spawn,		      SHCMD("~/scripts/voltoggle.sh") },
+  { 0,                          XF86XK_AudioMute,		      spawn,		SHCMD("~/scripts/voltoggle.sh") },
 	{ 0,                          XF86XK_AudioRaiseVolume,	spawn,		SHCMD("~/scripts/volup.sh") },
 	{ 0,                          XF86XK_AudioLowerVolume,	spawn,		SHCMD("~/scripts/voldown.sh") },
 	TAGKEYS(                        XK_1,                      0)
