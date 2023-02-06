@@ -2,9 +2,9 @@
 
 /* appearance */
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
-static const unsigned int snap      = 10;       /* snap pixel */
-static const unsigned int gappih    = 10;       /* horiz inner gap between windows */
-static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
+static const unsigned int snap      = 1;       /* snap pixel */
+static const unsigned int gappih    = 3;       /* horiz inner gap between windows */
+static const unsigned int gappiv    = 7;       /* vert inner gap between windows */
 static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov    = 10;       /* vert outer gap between windows and screen edge */
 static       int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
@@ -63,7 +63,7 @@ static const Rule rules[] = {
 	{ "Firefox",         NULL,       NULL,    1 << 8,       0,           0,                     -1 },
 	{ NULL,		           "spterm",	 NULL,		SPTAG(0),		  1,			     1,                     -1 },
 	{ NULL,		           "spfm",		 NULL,		SPTAG(1),		  1,			     1,                     -1 },
-	{ NULL,		           "qq",	     NULL,		SPTAG(2),		  0,			     1,                     -1 },
+	{ NULL,		           "qq",	     NULL,		SPTAG(2),		  1,			     1,                     -1 },
 };
 
 /* layout(s) */
@@ -186,7 +186,7 @@ static const Key keys[] = {
 static const Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
-	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[10]} },
+	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[9]} },
 	{ ClkWinTitle,          0,              Button1,        togglewin,      {0} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button1,        sigstatusbar,   {.i = 1} },
