@@ -2,11 +2,11 @@
 
 /* appearance */
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
-static const unsigned int snap      = 5;       /* snap pixel */
-static const unsigned int gappih    = 3;       /* horiz inner gap between windows */
-static const unsigned int gappiv    = 7;       /* vert inner gap between windows */
-static const unsigned int gappoh    = 2;       /* horiz outer gap between windows and screen edge */
-static const unsigned int gappov    = 2;       /* vert outer gap between windows and screen edge */
+static const unsigned int snap      = 10;       /* snap pixel */
+static const unsigned int gappih    = 8;       /* horiz inner gap between windows */
+static const unsigned int gappiv    = 8;       /* vert inner gap between windows */
+static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov    = 10;       /* vert outer gap between windows and screen edge */
 static       int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
@@ -60,8 +60,8 @@ static const Rule rules[] = {
 	/* class      	     instance    title    tags mask     isfloating   CenterThisWindow?     monitor */
 	{ "st",              NULL,       NULL,    0,            0,     	     1,		                  -1 },
 	{ "Gimp",            NULL,       NULL,    0,            1,           0,                     -1 },
-	{ "Firefox",         NULL,       NULL,    1 << 8,       0,           0,                     -1 },
-	{ NULL,		           "spterm",	 NULL,		SPTAG(0),		  1,			     1,                     -1 },
+	{ "Firefox",         NULL,       NULL,    1 << 8,       1,           0,                     -1 },
+	{ NULL,		           "spterm",	 NULL,		SPTAG(0),		  1,			     0,                     -1 },
 	{ NULL,		           "spfm",		 NULL,		SPTAG(1),		  1,			     1,                     -1 },
 	{ NULL,		           "qq",	     NULL,		SPTAG(2),		  1,			     1,                     -1 },
 };
@@ -69,7 +69,7 @@ static const Rule rules[] = {
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 0; /* 1 will force focus on the fullscreen window */
 
 #define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
