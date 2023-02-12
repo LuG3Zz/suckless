@@ -848,7 +848,8 @@ drawbar(Monitor *m)
 				text = s + 1;
 			}
 		}
-		tw = TEXTW(text) - lrpad + 2;
+    tw = TEXTW(text) - lrpad + 2;
+
 		drw_text(drw, m->ww - statusw + x, 0, tw, bh, 0, text, 0);
 		tw = statusw;
 	}
@@ -896,8 +897,7 @@ drawbar(Monitor *m)
 					remainder--;
 				}
       drw_text(drw, x, 0, tabw, bh, lrpad / 2 + (c->icon ? c->icw + ICONSPACING : 0), c->name, 0);
-			//drw_text(drw, x, 0, tabw, bh, lrpad / 2 + (m->sel->icon ? m->sel->icw + ICONSPACING : 0), m->sel->name, 0);
-			if (c->icon) drw_pic(drw, x + lrpad / 2, (bh - m->sel->ich) / 2, c->icw, c->ich, c->icon);
+			if (c->icon) drw_pic(drw, x + lrpad / 2, (bh - c->ich) / 2, c->icw, c->ich, c->icon);
 			x += tabw;
 			}
 		} else {
@@ -1282,6 +1282,7 @@ hidewin(Client *c) {
 		return;
 
 	Window w = c->win;
+//  freeicon(c);
 	static XWindowAttributes ra, ca;
 
 	// more or less taken directly from blackbox's hide() function
@@ -2032,7 +2033,8 @@ showwin(Client *c)
 {
 	if (!c || !HIDDEN(c))
 		return;
-
+//	freeicon(c);
+//	c->icon = geticonprop(c->win, &c->icw, &c->ich);
 	XMapWindow(dpy, c->win);
 	setclientstate(c, NormalState);
 	arrange(c->mon);
@@ -2043,6 +2045,7 @@ showhide(Client *c)
 {
 	if (!c)
 		return;
+  
 	if (ISVISIBLE(c)) {
 		if ((c->tags & SPTAGMASK) && c->isfloating) {
 			c->x = c->mon->wx + (c->mon->ww / 2 - WIDTH(c) / 2);
@@ -2254,13 +2257,15 @@ void
 togglewin(const Arg *arg)
 {
 	Client *c = (Client*)arg->v;
-
+  
+  
 	if (c == selmon->sel) {
 		hidewin(c);
 		focus(NULL);
 		arrange(c->mon);
-	} else {
-		if (HIDDEN(c))
+	}else
+  {
+		if(HIDDEN(c))
 			showwin(c);
 		focus(c);
 		restack(selmon);
