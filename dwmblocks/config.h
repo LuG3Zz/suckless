@@ -19,6 +19,7 @@ static const Block blocks[] = {
 	///* {"",	"sb-moonphase",	18000,	17}, */
 	//{"",	"sb-doppler",	0,	13},
 	//{"",	"sb-forecast",	18000,	5},
+	{"",	"~/scripts/get_weather.sh",	180,	5},
 	{"",	"~/scripts/get_mail.sh",	180,	12},
 	{"",	"~/scripts/get_nettraf.sh",	1,	16},
 	{"",	"~/scripts/get_volume.sh",	1,	10},
