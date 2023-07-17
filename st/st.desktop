@@ -1,8 +1,8 @@
 [Desktop Entry]
-Name=st
-Comment=st is a simple terminal implementation for X
-Exec=st
-Icon=st
-Terminal=false
 Type=Application
-Categories=System;TerminalEmulator;
+Name=st
+Comment=simple-terminal emulator for X
+Icon=st
+Exec=st
+Categories=System;TerminalEmulator
+StartupWMClass=st-256color
